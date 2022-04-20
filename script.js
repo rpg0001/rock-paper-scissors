@@ -1,11 +1,11 @@
-
+// randomly returns either rock, paper or scissors
 function computerPlay() {
-    // randomly returns either rock, paper or scissors
     const n = Math.floor(Math.random() * 3);
     const options = ["rock", "paper", "scissors"];
     return options[n];
 }
 
+// takes player and computer's choices and returns the result
 function playRound(playerSelection, computerSelection) {
     const ps = playerSelection.toLowerCase();
     const cs = computerSelection.toLowerCase();
@@ -23,12 +23,22 @@ function playRound(playerSelection, computerSelection) {
                 (cs == "paper" && ps == "rock")) {
         result = "you lose! " + cs + " beats " + ps + "!"; ;
     } else {
-        result = "wtf";
+        result = "something went wrong :(";
     }
 
     return result;
 }
 
-let comp = computerPlay();
-console.log("computer chooses: " + comp);
-console.log(playRound("rock", comp));
+// runs the game 5 times
+function game() {
+    for (let i = 0; i < 5; i++) {
+        const computerSelection = computerPlay();
+        const playerSelection = window.prompt("enter your choice: ", "");
+
+        console.log("computer chooses: " + computerSelection);
+        console.log(playRound(playerSelection, computerSelection));
+    }
+}
+
+game();
+
