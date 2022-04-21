@@ -1,1 +1,1 @@
-odin project innit
+it's rock paper scissors
