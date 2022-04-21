@@ -63,26 +63,47 @@ function displayScore() {
 function manageScore() {
     displayScore();
     if (playerScore >= 5) {
-        alert("You win!");
+        alertBox("win");
         playerScore = 0;
         computerScore = 0;
         displayScore();
     } else if (computerScore >= 5) {
-        alert("Computer wins!");
+        alertBox("lose");
         playerScore = 0;
         computerScore = 0;
         displayScore();
     }
 }
 
+function alertBox(result) {
+    const alertBox = document.querySelector("#alertBox");
+    alertBox.style.fontWeight = "bold";
+    alertBox.style.color = "white";
+    alertBox.style.padding = "5px";
+    alertBox.style.borderRadius = "5px";
+    if (result == "win") {
+        alertBox.style.backgroundColor = "#198754";
+        alertBox.textContent = "You win!";
+    } else if (result == "lose") {
+        alertBox.style.backgroundColor = "#dc3545";
+        alertBox.textContent = "You lose!";
+    }
+}
 
-// for the UI version! click button to play :)
+function eraseAlertBox() {
+    const alertBox = document.querySelector("#alertBox");
+    alertBox.textContent = '';
+    alertBox.style.padding = "0px";
+}
+
+// for the UI version! click buttons to play :)
+
 let playerScore = 0;
 let computerScore = 0;
-
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
+        eraseAlertBox();
         const computerSelection = computerPlay();
         const result = playRound(button.id, computerSelection);
         displayResults(computerSelection, result);
