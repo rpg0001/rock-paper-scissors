@@ -41,15 +41,29 @@ function game() {
     }
 }
 
+function displayResults(computerSelection, result) {
+    const results = document.querySelector("#results");
+    const p1 = document.createElement("p");
+    const p2 = document.createElement("p");
+    p1.textContent = "computer chooses: " + computerSelection;
+    p2.textContent = "result: " + result;
+    results.textContent = "";
+    results.appendChild(p1);
+    results.appendChild(p2);
+}
+
+// for the UI version! click button to play :)
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         const computerSelection = computerPlay();
         const result = playRound(button.id, computerSelection);
-        console.log("computer chooses: " + computerSelection);
-        console.log("result: " + result);
+        displayResults(computerSelection, result);
         
     });
 });
+
+
+
 
 
