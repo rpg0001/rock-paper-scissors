@@ -1,6 +1,4 @@
 
-
-
 // randomly returns either rock, paper or scissors
 function computerPlay() {
     const n = Math.floor(Math.random() * 3);
@@ -91,8 +89,6 @@ buttons.forEach((button) => {
         manageScore();
     });
 });
-
-
 
 
 
