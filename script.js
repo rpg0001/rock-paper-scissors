@@ -30,6 +30,7 @@ function playRound(playerSelection, computerSelection) {
 }
 
 // runs the game 5 times
+// for console version!
 function game() {
     for (let i = 0; i < 5; i++) {
         const computerSelection = computerPlay();
@@ -40,5 +41,15 @@ function game() {
     }
 }
 
-game();
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+        const computerSelection = computerPlay();
+        const result = playRound(button.id, computerSelection);
+        console.log("computer chooses: " + computerSelection);
+        console.log("result: " + result);
+        
+    });
+});
+
 
