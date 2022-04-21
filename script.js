@@ -1,3 +1,6 @@
+
+
+
 // randomly returns either rock, paper or scissors
 function computerPlay() {
     const n = Math.floor(Math.random() * 3);
@@ -17,11 +20,13 @@ function playRound(playerSelection, computerSelection) {
     } else if ((ps == "rock" && cs == "scissors") ||
                 (ps == "scissors" && cs == "paper") ||
                 (ps == "paper" && cs == "rock")) {
-        result = "you win! " + ps + " beats " + cs + "!"; 
+        result = "you win! " + ps + " beats " + cs + "!";
+        playerScore++; 
     } else if ((cs == "rock" && ps == "scissors") ||
                 (cs == "scissors" && ps == "paper") ||
                 (cs == "paper" && ps == "rock")) {
         result = "you lose! " + cs + " beats " + ps + "!"; ;
+        computerScore++; 
     } else {
         result = "something went wrong :(";
     }
@@ -46,20 +51,44 @@ function displayResults(computerSelection, result) {
     const p1 = document.createElement("p");
     const p2 = document.createElement("p");
     p1.textContent = "computer chooses: " + computerSelection;
-    p2.textContent = "result: " + result;
+    p2.textContent = "round result: " + result;
     results.textContent = "";
     results.appendChild(p1);
     results.appendChild(p2);
 }
 
+function displayScore() {
+    const score = document.querySelector("#score");
+    score.textContent = "Player score: " + playerScore + " | Computer score: " + computerScore;
+}
+
+function manageScore() {
+    displayScore();
+    if (playerScore >= 5) {
+        alert("You win!");
+        playerScore = 0;
+        computerScore = 0;
+        displayScore();
+    } else if (computerScore >= 5) {
+        alert("Computer wins!");
+        playerScore = 0;
+        computerScore = 0;
+        displayScore();
+    }
+}
+
+
 // for the UI version! click button to play :)
+let playerScore = 0;
+let computerScore = 0;
+
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
         const computerSelection = computerPlay();
         const result = playRound(button.id, computerSelection);
         displayResults(computerSelection, result);
-        
+        manageScore();
     });
 });
 
